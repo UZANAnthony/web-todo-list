@@ -13,11 +13,10 @@
 		<h2>WEBZAN CORPORATION</h2>
 	</div>
 </div>
-
 	<c:if test="${ !empty form.result }">
-		<c:out value="${ form.result }"/>
+		<p>Incorrect username or password !</p>
 	</c:if>
-	
+
 	<form method="post" action="LoginServlet">
 		<label for="username">Username : </label>
 		<input type="text" id="username" name="username"/>

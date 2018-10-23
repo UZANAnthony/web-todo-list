@@ -17,9 +17,15 @@
 
 <div id="container">
 	<div id="content">
-		<form action="AddTodoServlet" method="get">
-			<input type="submit" value="Add Todo"/>
-		</form>
+		
+		<c:out value="Bienvenu ${ sessionScope.username } !"/>
+		
+		<c:if test="${ sessionScope.role == 'instructor' }">
+			<form action="AddTodoServlet" method="get">
+				<input type="submit" value="Add Todo"/>
+			</form>
+		</c:if>
+		
 		<table>
 			<tr>
 				<th>Id</th>
@@ -37,10 +43,14 @@
 				<tr>
 					<td> ${ tmpTodo.id } </td>
 					<td> ${ tmpTodo.description } </td>
-					<td> <a href="${ EditLink }">Edit</a>|<a href="${ DeleteLink }">Delete</a></td>
+					<c:if test="${ sessionScope.role == 'instructor' }">
+						<td> <a href="${ EditLink }">Edit</a>|<a href="${ DeleteLink }">Delete</a></td>
+					</c:if>
 				</tr>
 			</c:forEach>
 		</table>
+		
+		<a href="LoginServlet">Logout</a>
 	</div>
 </div>
 </body>

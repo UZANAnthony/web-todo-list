@@ -25,8 +25,7 @@ public class UserDBUtil {
 			myConn = dataSource.getConnection();
 			myStmt = myConn.createStatement();
 			String query = "SELECT * FROM user WHERE username=\""+username+"\"";
-			myRs = myStmt.executeQuery(query);
-			
+			myRs = myStmt.executeQuery(query);	
 			while(myRs.next()) {
 				String password = myRs.getString("password");
 				String role = myRs.getString("role");

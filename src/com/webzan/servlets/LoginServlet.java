@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import com.webzan.beans.User;
@@ -37,26 +38,23 @@ public class LoginServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		//User user = userDBUtil.fetchUser(username);
+		String username = request.getParameter("username");
+		User user = userDBUtil.fetchUser(username);
+		String role = user.getRole();
 		
 		ConnectionForm form = new ConnectionForm();
-		form.checkId(request);
+		form.checkId(request, user);
 		request.setAttribute("form", form);
 		
-		this.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
-		
-		//System.out.println(user.getPassword());
-		//System.out.println(password);
-		//boolean res = (password == user.getPassword().toString());
-		//System.out.println(res);
-		/*if(password.toString() == user.getPassword().toString()) {
-			System.out.println("TRUE");
+		if(form.getResult()) {
+			HttpSession session = request.getSession();
+			session.setAttribute("username", username);
+			session.setAttribute("role", role);
+			response.sendRedirect("TodoControllerServlet");
 		}
 		else {
-			System.out.println("FALSE");
-		}*/
-		
+			this.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+		}
 	}
 
 }

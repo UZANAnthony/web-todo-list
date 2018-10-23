@@ -16,6 +16,8 @@
 	</div>
 </div>
 
+<c:out value="Bienvenu ${ sessionScope.username } !"/>
+
 <div id="container">
 	<h3>Add New Todo</h3>
 	<form action="TodoControllerServlet" method="post">
@@ -34,6 +36,7 @@
 	</form>
 	<div style="clear:both;"></div>
 	<a href="TodoControllerServlet">Back to List</a>
+	<a href="LoginServlet">Logout</a>
 
 </div>
 
