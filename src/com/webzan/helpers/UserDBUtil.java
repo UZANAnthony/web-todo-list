@@ -15,29 +15,60 @@ public class UserDBUtil {
 		dataSource = initDataSource;
 	}
 	
-	public User fetchUser(String username){
-		
+	public boolean userExists(String username) {
 		Connection myConn = null;
 		Statement myStmt = null;
 		ResultSet myRs = null;
-		User user = null;
 		
 		try {
 			myConn = dataSource.getConnection();
 			myStmt = myConn.createStatement();
-			String query = "SELECT * FROM user WHERE username=\""+username+"\"";
-			myRs = myStmt.executeQuery(query);	
-			while(myRs.next()) {
-				String password = myRs.getString("password");
-				String role = myRs.getString("role");
-				user = new User(username, password, role);
+			String query = "SELECT count(username) as res FROM user WHERE username=\""+username+"\"";
+			myRs = myStmt.executeQuery(query);
+			myRs.next();
+			if(myRs.getInt("res") == 0) {
+				return false;
 			}
-			return user;
+			else {
+				return true;
+			}
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
-			return null;
+			return false;
 		}finally {
 			close(myConn,myStmt,myRs);
+		}
+	}
+	
+	public User fetchUser(String username){
+		
+		if(!userExists(username)) {
+			return null;
+		}
+		else {
+			Connection myConn = null;
+			Statement myStmt = null;
+			ResultSet myRs = null;
+			User user = null;
+			
+			try {
+				myConn = dataSource.getConnection();
+				myStmt = myConn.createStatement();
+				String query = "SELECT * FROM user WHERE username=\""+username+"\"";
+				myRs = myStmt.executeQuery(query);
+				
+				while(myRs.next()) {
+					String password = myRs.getString("password");
+					String role = myRs.getString("role");
+					user = new User(username, password, role);
+				}
+				return user;
+			}catch(Exception e) {
+				System.out.println(e.getMessage());
+				return null;
+			}finally {
+				close(myConn,myStmt,myRs);
+			}
 		}
 	}
 	

@@ -10,11 +10,16 @@ public class ConnectionForm {
 	public void checkId(HttpServletRequest request, User user) {
 		String pass = request.getParameter("pass");
 		
-		if(pass.equals(user.getPassword())) {
-			result = true;
+		if(user == null) {
+			result = false;
 		}
 		else {
-			result = false;
+			if(pass.equals(user.getPassword())) {
+				result = true;
+			}
+			else {
+				result = false;
+			}
 		}
 	}
 

@@ -49,26 +49,34 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String username = request.getParameter("username");
 		User user = userDBUtil.fetchUser(username);
-		String role = user.getRole();
-		
 		ConnectionForm form = new ConnectionForm();
-		form.checkId(request, user);
-		request.setAttribute("form", form);
 		
-		if(form.getResult()) {
-			HttpSession session = request.getSession();
-			session.setAttribute("username", username);
-			session.setAttribute("role", role);
+		if(user != null) {
+			String role = user.getRole();
+			form.checkId(request, user);
+			request.setAttribute("form", form);
 			
-			Cookie cookie = new Cookie("username", username);
-			cookie.setMaxAge(60*60*24*31);
-			response.addCookie(cookie);
-			
-			response.sendRedirect("TodoControllerServlet");
+			if(form.getResult()) {
+				HttpSession session = request.getSession();
+				session.setAttribute("username", username);
+				session.setAttribute("role", role);
+				
+				Cookie cookie = new Cookie("username", username);
+				cookie.setMaxAge(60*60*24*31);
+				response.addCookie(cookie);
+				
+				response.sendRedirect("TodoControllerServlet");
+			}
+			else {
+				this.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+			}
 		}
 		else {
+			form.checkId(request, user);
+			request.setAttribute("form", form);
 			this.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
 		}
+		
 	}
 
 }

@@ -16,7 +16,7 @@
 </div>
 	<p>
 		<c:if test="${ !empty form.result }">
-			<p>Incorrect password !</p>
+			<p>Incorrect username or password !</p>
 		</c:if>
 	</p>
 

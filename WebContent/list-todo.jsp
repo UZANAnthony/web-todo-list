@@ -46,6 +46,7 @@
 				<tr>
 					<td> ${ tmpTodo.id } </td>
 					<td> ${ tmpTodo.description } </td>
+					
 					<c:if test="${ sessionScope.role == 'instructor' }">
 						<td> <a href="${ EditLink }">Edit</a>|<a href="${ DeleteLink }">Delete</a></td>
 					</c:if>
