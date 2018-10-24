@@ -19,7 +19,12 @@
 
 	<form method="post" action="LoginServlet">
 		<label for="username">Username : </label>
-		<input type="text" id="username" name="username"/>
+		<c:if test="${ !empty username }">
+			<input type="text" id="username" name="username" value="${ username }"/>
+		</c:if>
+		<c:if test="${ empty username }">
+			<input type="text" id="username" name="username"/>
+		</c:if>
 		
 		<label for="pass">Password : </label>
 		<input type="password" id="pass" name="pass"/>
