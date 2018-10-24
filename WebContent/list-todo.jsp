@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link type="text/css" rel="stylesheet" href="style.css"/>
 <title>Web Todo Tracker</title>
 </head>
 
@@ -18,13 +19,15 @@
 <div id="container">
 	<div id="content">
 		
-		<c:out value="Bienvenu ${ sessionScope.username } !"/>
+		<p><c:out value="Bienvenu ${ sessionScope.username } !"/></p>
 		
+		<p>
 		<c:if test="${ sessionScope.role == 'instructor' }">
 			<form action="AddTodoServlet" method="get">
 				<input type="submit" value="Add Todo"/>
 			</form>
 		</c:if>
+		</p>
 		
 		<table>
 			<tr>
@@ -50,7 +53,7 @@
 			</c:forEach>
 		</table>
 		
-		<a href="LoginServlet">Logout</a>
+		<p><a href="LoginServlet">Logout</a></p>
 	</div>
 </div>
 </body>

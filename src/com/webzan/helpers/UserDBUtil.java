@@ -16,6 +16,7 @@ public class UserDBUtil {
 	}
 	
 	public User fetchUser(String username){
+		
 		Connection myConn = null;
 		Statement myStmt = null;
 		ResultSet myRs = null;

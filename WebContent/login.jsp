@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link type="text/css" rel="stylesheet" href="style.css"/>
 <title>Login</title>
 </head>
 <body>
@@ -13,11 +14,14 @@
 		<h2>WEBZAN CORPORATION</h2>
 	</div>
 </div>
-	<c:if test="${ !empty form.result }">
-		<p>Incorrect username or password !</p>
-	</c:if>
+	<p>
+		<c:if test="${ !empty form.result }">
+			<p>Incorrect password !</p>
+		</c:if>
+	</p>
 
 	<form method="post" action="LoginServlet">
+		<p>
 		<label for="username">Username : </label>
 		<c:if test="${ !empty username }">
 			<input type="text" id="username" name="username" value="${ username }"/>
@@ -25,11 +29,15 @@
 		<c:if test="${ empty username }">
 			<input type="text" id="username" name="username"/>
 		</c:if>
+		</p>
 		
+		<p>
 		<label for="pass">Password : </label>
 		<input type="password" id="pass" name="pass"/>
-		
+		</p>
+		<p>
 		<input type="submit" value="Login"/>
+		</p>
 	</form>
 </body>
 </html>

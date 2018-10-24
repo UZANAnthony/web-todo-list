@@ -7,6 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" href="style.css"/>
 <title>Edit a Todo</title>
 </head>
 
@@ -18,7 +19,7 @@
 	</div>
 </div>
 
-<c:out value="Bienvenu ${ sessionScope.username } !"/>
+<p><c:out value="Bienvenu ${ sessionScope.username } !"/></p>
 
 <div id="container">
 	<h3>Edit a Todo</h3>
@@ -37,8 +38,8 @@
 		</table>
 	</form>
 	<div style="clear:both;"></div>
-	<a href="TodoControllerServlet">Back to List</a>
-	<a href="LoginServlet">Logout</a>
+	<p><a href="TodoControllerServlet">Back to List</a></p>
+	<p><a href="LoginServlet">Logout</a></p>
 
 </div>
 </body>
