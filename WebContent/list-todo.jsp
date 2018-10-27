@@ -19,7 +19,7 @@
 <div id="container">
 	<div id="content">
 		
-		<p><c:out value="Bienvenu ${ sessionScope.username } !"/></p>
+		<p><c:out value="Welcome ${ sessionScope.username } !"/></p>
 		
 		<p>
 		<c:if test="${ sessionScope.role == 'instructor' }">

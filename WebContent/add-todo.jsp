@@ -16,7 +16,7 @@
 		<h2>WEBZAN CORPORATION</h2>
 	</div>
 </div>
-<p><c:out value="Bienvenu ${ sessionScope.username } !"/></p>
+<p><c:out value="Welcome ${ sessionScope.username } !"/></p>
 
 <div id="container">
 	<h3>Add New Todo</h3>

@@ -19,7 +19,7 @@
 	</div>
 </div>
 
-<p><c:out value="Bienvenu ${ sessionScope.username } !"/></p>
+<p><c:out value="Welcome ${ sessionScope.username } !"/></p>
 
 <div id="container">
 	<h3>Edit a Todo</h3>
