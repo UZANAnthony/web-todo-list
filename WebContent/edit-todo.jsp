@@ -21,6 +21,7 @@
 
 <p><c:out value="Welcome ${ sessionScope.username } !"/></p>
 
+<c:if test="${ sessionScope.role == 'instructor' }">
 <div id="container">
 	<h3>Edit a Todo</h3>
 	<form action="EditTodoServlet" method="post">
@@ -42,5 +43,12 @@
 	<p><a href="LoginServlet">Logout</a></p>
 
 </div>
+</c:if>
+
+<c:if test="${ sessionScope.role != 'instructor' }">
+	Access denied !
+	<p><a href="TodoControllerServlet">Back to List</a></p>
+	<p><a href="LoginServlet">Logout</a></p>
+</c:if>
 </body>
 </html>
